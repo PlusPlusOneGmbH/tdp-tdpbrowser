@@ -3,12 +3,12 @@ revision = 3
 requires-python = ">=3.11.10"
 
 [[package]]
-name = "aiosqlite"
-version = "0.22.1"
+name = "mistune"
+version = "3.0.0"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/4e/8a/64761f4005f17809769d23e518d915db74e6310474e733e3593cfc854ef1/aiosqlite-0.22.1.tar.gz", hash = "sha256:043e0bd78d32888c0a9ca90fc788b38796843360c855a7262a532813133a0650", size = 14821, upload-time = "2025-12-23T19:25:43.997Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/a7/ef/aa3f6c66f3d8941814ba1d307d868f4f278f01f7d0c146f2908942b5d43e/mistune-3.0.0.tar.gz", hash = "sha256:b28444efe542cc9bb9f19fb133740ab020fe5e14fe6ffcce9576d24fbd1e5b20", size = 38234, upload-time = "2023-06-08T08:51:52.236Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/00/b7/e3bf5133d697a08128598c8d0abc5e16377b51465a33756de24fa7dee953/aiosqlite-0.22.1-py3-none-any.whl", hash = "sha256:21c002eb13823fad740196c5a2e9d8e62f6243bd9e7e4a1f87fb5e44ecb4fceb", size = 17405, upload-time = "2025-12-23T19:25:42.139Z" },
+    { url = "https://files.pythonhosted.org/packages/55/97/adcde5767133f2f49023caa8312bf8202e9f1f410b6ef73c185ea3abb6d8/mistune-3.0.0-py3-none-any.whl", hash = "sha256:32eaf3c092715730f754903698c99cba8474606f66c72c393ebb7f1dfa5c8c48", size = 47629, upload-time = "2023-06-08T08:51:50.49Z" },
 ]
 
 [[package]]
@@ -24,29 +24,6 @@ sdist = { url = "https://files.pythonhosted.org/packages/72/d9/18101eace44dac53c
 wheels = [
     { url = "https://files.pythonhosted.org/packages/7f/23/452a5b67a63dbed735979c1ff80bf9b7cbf3a23765d0068f0bdc789d0dfd/monkeybrain-0.4.0-py3-none-any.whl", hash = "sha256:2af6bb32264f81a28660be2f1acaa1ce2563760709245fb1122021ab71252260", size = 14857, upload-time = "2026-05-13T12:34:28.524Z" },
 ]
-
-[[package]]
-name = "projecttemplate-touchdesigner"
-version = "0.1.0"
-source = { virtual = "." }
-dependencies = [
-    { name = "tdp-pp1cu" },
-    { name = "tdp-touchutilcollection" },
-]
-
-[package.dev-dependencies]
-dev = [
-    { name = "monkeybrain", marker = "sys_platform == 'win32'" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "tdp-pp1cu", git = "https://github.com/PlusPlusOneGmbH/tdp-pp1cu" },
-    { name = "tdp-touchutilcollection", specifier = ">=0.7.3" },
-]
-
-[package.metadata.requires-dev]
-dev = [{ name = "monkeybrain", marker = "sys_platform == 'win32'", specifier = ">=0.4" }]
 
 [[package]]
 name = "python-dotenv"
@@ -77,32 +54,35 @@ wheels = [
 ]
 
 [[package]]
-name = "tdp-pp1cu"
+name = "tdp-markdownrender"
 version = "0.0.1"
-source = { git = "https://github.com/PlusPlusOneGmbH/tdp-pp1cu#c36f093a000e2ed87769c878430e89d1156f4b13" }
+source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "aiosqlite" },
-    { name = "tdp-tauceti" },
-    { name = "tdp-touchutilcollection" },
+    { name = "mistune" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/19/5f/a205120e5a30ca93d7ce9008f8d55a4cf4611628b3a9f089d31391037bd5/tdp_markdownrender-0.0.1.tar.gz", hash = "sha256:1b40d058a1489d13d4b073ec82a09bb25a5e57f3fd8fca01fe5d92f63cd0ebca", size = 12491, upload-time = "2026-05-14T08:42:35.437Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/9e/2c/9fcacf4e5bb9223dffbc58eaf65a3127e1d81e45730f72554777c4647e69/tdp_markdownrender-0.0.1-py3-none-any.whl", hash = "sha256:0860a384c7f78e234aa1c80eab30d724091cf8ec5c8d9d25678c2cbdf8dc9109", size = 12166, upload-time = "2026-05-14T08:42:36.716Z" },
 ]
 
 [[package]]
-name = "tdp-tauceti"
-version = "5.1.14"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/ca/47/8700df051d9d98b234dcbd6827d0f32990c62d462a3dad60c181449a2538/tdp_tauceti-5.1.14.tar.gz", hash = "sha256:68e7388efa7e2b11be1655f5ac27eeda8289df9acb7f50888af94acb490f9ff6", size = 1250942, upload-time = "2026-04-08T18:05:14.128Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/f7/3f/6a3946e993b61bf06188eebd543758795701c86e50f8150b9e2eff98b727/tdp_tauceti-5.1.14-py3-none-any.whl", hash = "sha256:798ed48c0184917f6423e7d297876ec33a461adff1256e1d463e228ffb461a41", size = 1247140, upload-time = "2026-04-08T18:05:11.337Z" },
+name = "tdp-tdpbrowser"
+version = "0.0.1"
+source = { editable = "." }
+dependencies = [
+    { name = "tdp-markdownrender" },
 ]
 
-[[package]]
-name = "tdp-touchutilcollection"
-version = "0.7.3"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/00/3d/526aca5e38c61e3a2c956bf17a37b8d3cc7b053168e6994680e27bff5805/tdp_touchutilcollection-0.7.3.tar.gz", hash = "sha256:be7340e0eaa73f5d9e79a992c7eb552c3e007afff1729647dcf3c0cd36f58196", size = 12690, upload-time = "2026-03-13T10:14:14.588Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/99/af/d7183bc745ecbee79868e7843c7c455b67adde982fa52e723594c466c47d/tdp_touchutilcollection-0.7.3-py3-none-any.whl", hash = "sha256:d489ad463b34def75fa2f3c6bc0a04d0e4e0ca27aba613b9651cbd01646866f4", size = 17249, upload-time = "2026-03-13T10:14:13.365Z" },
+[package.dev-dependencies]
+dev = [
+    { name = "monkeybrain", marker = "sys_platform == 'win32'" },
 ]
+
+[package.metadata]
+requires-dist = [{ name = "tdp-markdownrender" }]
+
+[package.metadata.requires-dev]
+dev = [{ name = "monkeybrain", marker = "sys_platform == 'win32'", specifier = ">=0.4" }]
 
 [[package]]
 name = "toml"

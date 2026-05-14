@@ -1,19 +1,21 @@
 [project]
-name = "projecttemplate-touchdesigner"
-version = "0.1.0"
-description = "Add your description here"
+name = "tdp-tdpbrowser"
+version = "0.0.1"
+description = "Browse and place touchdesigner packages (TDP)."
 readme = "README.md"
+keywords=["TouchDesigner", "TouchDesignerPackage"]
 requires-python = ">=3.11.10"
 dependencies = [
- "tdp-pp1cu",
- "tdp-touchutilcollection>=0.7.3",
+ "tdp-markdownrender"
 ]
+
+[[project.authors]]
+name = "Wieland Hilker"
+email = "Wieland@PlusPlus.One"
 
 [dependency-groups]
 dev = [ "monkeybrain>=0.4;sys_platform =='win32'",]
 
-[tool.uv.sources]
-tdp-pp1cu = { git = "https://github.com/PlusPlusOneGmbH/tdp-pp1cu" }
 
 [tool.monkeybrain]
 touchdesigner-version = "2025.32460"
@@ -32,17 +34,12 @@ autoSetup = false
 autoSetupReqs = []
 autoSetupSyncReqs = false
 extraPaths = ["src", ".venv/Lib/site-packages"]
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
 
+[tool.setuptools.packages.find]
+where = ["src"] # Or any folder where the packeg-structure resides on.
 
-## Package Requirements
-## Uncomment for Package-Development!
-
-# [build-system]
-# requires = ["setuptools>=61.0"]
-# build-backend = "setuptools.build_meta"
-
-# [tool.setuptools.packages.find]
-# where = ["src"] # Or any folder where the packeg-structure resides on.
-
-# [tool.setuptools.package-data]
-# "*" = ["*.tox"] # Otherwise binary tox-files will be ignored.
+[tool.setuptools.package-data]
+"*" = ["*.tox"] # Otherwise binary tox-files will be ignored
