@@ -24,7 +24,7 @@ projectfile = "Project.toe"
 
 [tool.touchdesigner.TDPyEnvManagerContext]
 contextVersion = 2
-createdByVersion = "1.4.0"
+createdByVersion = "1.4.1"
 active = true
 mode = "Python vEnv"
 envName = ".venv"
@@ -34,8 +34,6 @@ autoSetup = false
 autoSetupReqs = []
 autoSetupSyncReqs = false
 extraPaths = ["src"]
-
-
 [build-system]
 requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
