@@ -41,7 +41,7 @@ class extTdpBrowser(EnsureExtension):
 			if ( self.par.Searchviaprefix.eval() and package.name.startswith("tdp-") 
 	   			or 
 				self.par.Searchviakeyword.eval() and "TouchDesignerPackage" in package.metadata.get("keywords", [])):
-				package_files = self.load_package_toxfiles( lookup[ package.name ] )
+				package_files = self.load_package_toxfiles( lookup.get( package.name, [] ) )
 				if not package_files: continue
 		
 					
