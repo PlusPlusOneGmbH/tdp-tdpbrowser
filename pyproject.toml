@@ -19,7 +19,7 @@ dev = [ "monkeybrain>=0.4;sys_platform =='win32'",]
 
 [tool.monkeybrain]
 touchdesigner-version = "2025.32460"
-enforce-version = "strict"
+enforce-version = "latest-version"
 projectfile = "Project.toe"
 
 [tool.touchdesigner.TDPyEnvManagerContext]
