@@ -2,7 +2,7 @@
 Name : extTdpBrowser
 Author : WielandHilkerPlusPlu@AzureAD
 Saveorigin : Project.toe
-Saveversion : 2025.32460
+Saveversion : 2025.33070
 Info Header End'''
 
 from importlib.metadata import distributions, packages_distributions, files
@@ -59,16 +59,12 @@ class extTdpBrowser(EnsureExtension):
 		for module_name in module_names:
 			for name, path in getattr(import_module( module_name ) , "_ToxFiles", {}).items():
 				tox_files.add((module_name, name, str(path.relative_to(project.folder))))
-				#tox_files.add({
-				#	"module" : module_name, 
-				#	"tox_name" : name, 
-				#	"path" : str(path.relative_to(project.folder))
-				#}
-				#)
 
 		return list(tox_files)
 		
-		
+
+
+
 	def Place(self, module_name, tox_name):
 		
 		if ui.panes.current.type != PaneType.NETWORKEDITOR: return

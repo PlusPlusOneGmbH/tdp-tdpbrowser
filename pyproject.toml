@@ -1,12 +1,13 @@
 [project]
 name = "tdp-tdpbrowser"
-version = "0.1.0"
+version = "0.1.1"
 description = "Browse and place touchdesigner packages (TDP)."
 readme = "README.md"
 keywords=["TouchDesigner", "TouchDesignerPackage"]
 requires-python = ">=3.11.10"
 dependencies = [
- "tdp-markdownrender"
+ "tdp-markdownrender",
+ "tdp-touchutilcollection>=0.8.0",
 ]
 
 [[project.authors]]

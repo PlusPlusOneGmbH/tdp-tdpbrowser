@@ -67,10 +67,11 @@ wheels = [
 
 [[package]]
 name = "tdp-tdpbrowser"
-version = "0.1.0"
+version = "0.1.1"
 source = { editable = "." }
 dependencies = [
     { name = "tdp-markdownrender" },
+    { name = "tdp-touchutilcollection" },
 ]
 
 [package.dev-dependencies]
@@ -79,10 +80,22 @@ dev = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "tdp-markdownrender" }]
+requires-dist = [
+    { name = "tdp-markdownrender" },
+    { name = "tdp-touchutilcollection", specifier = ">=0.8.0" },
+]
 
 [package.metadata.requires-dev]
 dev = [{ name = "monkeybrain", marker = "sys_platform == 'win32'", specifier = ">=0.4" }]
+
+[[package]]
+name = "tdp-touchutilcollection"
+version = "0.8.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/e9/64/456befd82260482aa7500a44491c75dde853d16f2f334e3e85dd954a59a8/tdp_touchutilcollection-0.8.0.tar.gz", hash = "sha256:d215931fbe48bdbd1cd219b42ea5b7953b62fadfe30b51e1d61816ad3e29e1b8", size = 14527, upload-time = "2026-08-16T20:07:49.789Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/73/2d/47743e973e522cb31b8dc2990a6d57469d63fcccfddd1d16e96e6801cf7d/tdp_touchutilcollection-0.8.0-py3-none-any.whl", hash = "sha256:19f964af029d73438707768b84a791487599a7d5f297932a5aeaf4dda241a305", size = 19375, upload-time = "2026-08-16T20:07:48.65Z" },
+]
 
 [[package]]
 name = "toml"
