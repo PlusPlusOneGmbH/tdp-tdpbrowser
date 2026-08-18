@@ -1,6 +1,6 @@
 [project]
 name = "tdp-tdpbrowser"
-version = "0.2.0"
+version = "0.3.0"
 description = "Browse and place touchdesigner packages (TDP)."
 readme = "README.md"
 keywords=["TouchDesigner", "TouchDesignerPackage"]

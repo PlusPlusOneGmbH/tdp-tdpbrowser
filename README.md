@@ -14,3 +14,12 @@ To refresh the list simply press the "Refresh" parameter, call the .Update() met
 The Browser will install a shortcut in to the UI to open it, but you can also press shortcut (default F7) to open to browser.
 
 The Browser also has a button to open a commandline (not, windows only) for installing packages directly.
+
+To place a File, simply double-click or drag and drop in to the network editor.
+
+
+# Setup
+Run the following in your textport to setup the browser.
+```python
+mod.tdptdpbrowser.Setup()
+```
