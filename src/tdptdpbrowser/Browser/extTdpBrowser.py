@@ -98,19 +98,23 @@ class extTdpBrowser(EnsureExtension):
 		return list(files)
 		
 
+	def Create_Tox(self, module_path, attr_name, parent_comp):
+		new_tox = parent_comp.loadTox( getattr( import_module( module_path ), attr_name ) )
+		new_tox.par.externaltox.expr = f"mod.{module_path}.{attr_name}"
+		new_tox.par.enableexternaltox.val = True
+		new_tox.par.enableexternaltoxpulse.pulse()
+		return new_tox
 
+	def Create_Item(self, module_path, attr_name, style, parent_comp):
+		match style:
+			case "Tox":
+				return self.Create_Tox( module_path, attr_name, parent_comp )
+		raise NotImplemented(f"{style} nopt yet supported")
 
 	def Place(self, module_path, style, attr_name):
-		print("Foobar")
 		debug( module_path, style, attr_name )
 		if ui.panes.current.type != PaneType.NETWORKEDITOR: return
 		current_active_comp:COMP = ui.panes.current.owner
 
-		if style == "Tox":
-			new_tox = current_active_comp.loadTox( getattr( import_module( module_path ), attr_name ) )
-			new_tox.par.externaltox.expr = f"mod.{module_path}.{attr_name}"
-			new_tox.par.enableexternaltox.val = True
-			new_tox.par.enableexternaltoxpulse.pulse()
-			ui.panes.current.placeOPs([ new_tox ])
-		else:
-			raise NotImplemented(f"{style} nopt yet supported")
+		ui.panes.current.placeOPs([ self.Create_Item(module_path, attr_name, style, current_active_comp) ])
+		
