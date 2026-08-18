@@ -1,6 +1,6 @@
 [project]
 name = "tdp-tdpbrowser"
-version = "0.1.1"
+version = "0.2.0"
 description = "Browse and place touchdesigner packages (TDP)."
 readme = "README.md"
 keywords=["TouchDesigner", "TouchDesignerPackage"]
@@ -15,7 +15,7 @@ name = "Wieland Hilker"
 email = "Wieland@PlusPlus.One"
 
 [dependency-groups]
-dev = [ "monkeybrain>=0.4;sys_platform =='win32'",]
+dev = [ "monkeybrain>=0.4;sys_platform =='win32'", "tdp-exposeabletox"]
 
 
 [tool.monkeybrain]
@@ -44,3 +44,6 @@ where = ["src"] # Or any folder where the packeg-structure resides on.
 
 [tool.setuptools.package-data]
 "*" = ["*.tox"] # Otherwise binary tox-files will be ignored
+
+[tool.uv.sources]
+tdp-exposeabletox = { git = "https://github.com/PlusPlusOneGmbH/tdp-MVP", rev = "v2" }

@@ -9,6 +9,9 @@ from importlib.metadata import distributions, packages_distributions, files
 from importlib import import_module
 from touchutilcollection.extensions import EnsureExtension, parfield, partypes
 import json
+from pathlib import Path
+import td
+from types import ModuleType
 
 
 class extTdpBrowser(EnsureExtension):
@@ -30,6 +33,7 @@ class extTdpBrowser(EnsureExtension):
 
 
 	def Update(self):
+
 		self.package_table.clear()
 		self.package_table.appendRow(["name", "version", "modules", "toxfiles", "readme"])
 		lookup = {}
@@ -41,11 +45,10 @@ class extTdpBrowser(EnsureExtension):
 			if ( self.par.Searchviaprefix.eval() and package.name.startswith("tdp-") 
 	   			or 
 				self.par.Searchviakeyword.eval() and "TouchDesignerPackage" in package.metadata.get("keywords", [])):
-				package_files = self.load_package_toxfiles( lookup.get( package.name, [] ) )
-				if not package_files: continue
-		
-					
 
+				package_files = self.load_package_files( lookup.get( package.name, [] ) )
+				if not package_files: continue
+					
 				self.package_table.appendRow([
 					package.name, 
 					package.version, 
@@ -54,24 +57,60 @@ class extTdpBrowser(EnsureExtension):
 					package.metadata["Description"]
 				])
 	
-	def load_package_toxfiles(self, module_names):
-		tox_files = set()
+	def load_package_files(self, module_names):
+		files = set()
 		for module_name in module_names:
-			for name, path in getattr(import_module( module_name ) , "_ToxFiles", {}).items():
-				tox_files.add((module_name, name, str(path.relative_to(project.folder))))
 
-		return list(tox_files)
+			imported_module = import_module( module_name )
+			match getattr( imported_module, "TDP_SPEC_VERSION", 1 ):
+				case 1:
+					for submodule_name in dir( imported_module ):
+						item = getattr( imported_module, submodule_name )
+						if ( hasattr(td, submodule_name) or 
+							(not hasattr(item, "__name__")) or 
+							(not isinstance( getattr( item, "ToxFile", None), Path))): continue
+						
+						files.add((
+							module_name, 
+							item.__name__.split(".")[-1],
+							item.__name__, 
+							str(item.ToxFile.relative_to(project.folder)),
+							"Tox",
+							"ToxFile"
+						))
+
+				case 2:
+					#TDP V2 
+					submodules = getattr( imported_module, "Modules", tuple())
+					# we have to do some assumptions as (Submodule) and (Submodule,) are different....
+					for submodule in (submodules,) if isinstance( submodules, ModuleType) else submodules:
+						filepath = getattr( submodule, "File", None)
+						if not isinstance(filepath,  Path ): continue
+						files.add((
+							module_name, 
+							submodule.__name__.split(".")[-1],
+							submodule.__name__, 
+							str(filepath.relative_to(project.folder)),
+							getattr(submodule, "Style", "Tox"),
+							"File"
+						))
+
+		return list(files)
 		
 
 
 
-	def Place(self, module_name, tox_name):
-		
+	def Place(self, module_path, style, attr_name):
+		print("Foobar")
+		debug( module_path, style, attr_name )
 		if ui.panes.current.type != PaneType.NETWORKEDITOR: return
 		current_active_comp:COMP = ui.panes.current.owner
-		
-		new_tox = current_active_comp.loadTox( getattr( import_module( module_name ), tox_name).ToxFile )
-		new_tox.par.externaltox.expr = f"mod.{module_name}.{tox_name}.ToxFile"
-		new_tox.par.enableexternaltox.val = True
-		new_tox.par.enableexternaltoxpulse.pulse()
-		ui.panes.current.placeOPs([ new_tox ])
+
+		if style == "Tox":
+			new_tox = current_active_comp.loadTox( getattr( import_module( module_path ), attr_name ) )
+			new_tox.par.externaltox.expr = f"mod.{module_path}.{attr_name}"
+			new_tox.par.enableexternaltox.val = True
+			new_tox.par.enableexternaltoxpulse.pulse()
+			ui.panes.current.placeOPs([ new_tox ])
+		else:
+			raise NotImplemented(f"{style} nopt yet supported")
